@@ -6,19 +6,21 @@ import {
   GridListTile,
   GridListTileBar,
   Dialog,
-  DialogTitle,
-  DialogContent,
-  DialogContentText,
-  TableContainer,
-  Paper,
-  Table,
-  TableHead,
-  TableBody,
-  TableRow,
-  TableCell,
+  Card,
+  CardHeader, 
+  CardMedia,
+  CardContent,
+  Typography
 } from "@material-ui/core";
 
 const useStyles = makeStyles({
+    root: {},
+    media: {
+      height: 300,
+      width: "85%",
+      margin: "0 auto",
+      backgroundSize: "contain"
+    },
     gridList: {
       width: "100%",
       display: "flex",
@@ -98,17 +100,9 @@ export default function GridItem(props){
               className={classes.listItem}
               onClick={handleClick(tile)}
             >
-              <img src={tile.img} alt={tile.title} />
+              <img src="./images/P-1-1.png" alt={tile.title} />
               <GridListTileBar
-                title={tile.description}
-                // actionIcon={
-                //   <IconButton
-                //     aria-label={`info about ${tile.title}`}
-                //     className={classes.icon}
-                //   >
-                //     <InfoIcon />
-                //   </IconButton>
-                // }
+                title={tile.vase_number + ": " + tile.vase_name}
               />
             </GridListTile>
           ))}
@@ -119,56 +113,23 @@ export default function GridItem(props){
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
           >
-            <DialogTitle id="alert-dialog-title">{"Vase Details"}</DialogTitle>
-            <DialogContent>
-              <DialogContentText id="alert-dialog-description">
-                {"attribute and value based view"}
-              </DialogContentText>
-              <TableContainer component={Paper}>
-                    <Table className="mytableContainer" aria-label="simple table">
-                        <TableHead>
-                        <TableRow>
-                            <TableCell>{"Attribute"}</TableCell>
-                            <TableCell align="left">{"Value"}</TableCell>
-                        </TableRow>
-                        </TableHead>
-                        <TableBody>
-                            <TableRow key={item.vase_number}>
-                                <TableCell component="th" scope="row">
-                                    {"Vase Number"}
-                                </TableCell>
-                                <TableCell component="th" scope="row">
-                                    {item.vase_number}
-                                </TableCell>
-                            </TableRow>
-                            <TableRow key={item.vase_number + "" + item.description}>
-                                <TableCell component="th" scope="row">
-                                    {"Description"}
-                                </TableCell>
-                                <TableCell component="th" scope="row">
-                                    {item.description}
-                                </TableCell>
-                            </TableRow>
-                            <TableRow key={item.scholor_name}>
-                                <TableCell component="th" scope="row">
-                                    {"Scholar Name"}
-                                </TableCell>
-                                <TableCell component="th" scope="row">
-                                    {item.scholor_name}
-                                </TableCell>
-                            </TableRow>
-                            <TableRow key={item.vase_name}>
-                                <TableCell component="th" scope="row">
-                                    {"Vase Name"}
-                                </TableCell>
-                                <TableCell component="th" scope="row">
-                                    {item.vase_name}
-                                </TableCell>
-                            </TableRow>
-                        </TableBody>
-                    </Table>
-                </TableContainer>
-            </DialogContent>
+            <Card className={classes.root}>
+              <CardHeader
+                title={item.vase_name}
+                subheader={"Location: " + item.vase_location}
+              />
+              <CardMedia
+                className={classes.media}
+                image="./images/P-1-1.png"
+                title={item.vase_name}
+              />
+              <CardContent>
+                <Typography variant="body2" color="textSecondary" component="p">
+                  <p>{item.description}</p>
+                  <p>{"Scholar Name: " + item.scholor_name}</p>                  
+                </Typography>
+              </CardContent>
+          </Card>
           </Dialog>
 
         </div>
