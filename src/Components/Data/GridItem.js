@@ -1,11 +1,14 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
+import "../../mystyles.css"
 // import axios from "axios";
 import {
   GridList,
   GridListTile,
   GridListTileBar,
   Dialog,
+  DialogActions,
+  Button,
   Card,
   CardHeader, 
   CardMedia,
@@ -19,7 +22,7 @@ const useStyles = makeStyles({
       height: 300,
       width: "85%",
       margin: "0 auto",
-      backgroundSize: "contain"
+      backgroundSize: "contain",
     },
     gridList: {
       width: "100%",
@@ -88,7 +91,7 @@ export default function GridItem(props){
 
     const searchedData = filter(data, values)
 
-    console.log(searchedData)
+    // console.log(searchedData)
 
     return (
       <div>
@@ -125,11 +128,14 @@ export default function GridItem(props){
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  <p>{item.description}</p>
-                  <p>{"Scholar Name: " + item.scholor_name}</p>                  
+                  {item.description}
+                  <strong>{"Scholar Name: "}</strong> {item.scholor_name}                  
                 </Typography>
               </CardContent>
           </Card>
+          <DialogActions>
+            <Button onClick={handleClose}>{"Close"}</Button>
+          </DialogActions>
           </Dialog>
 
         </div>

@@ -1,0 +1,14 @@
+li.MuiGridListTile-root .MuiGridListTile-tile {
+    position: relative;
+    overflow: hidden;
+}
+li.MuiGridListTile-root .MuiGridListTile-tile img {
+    position: absolute;
+    left: 0;
+    transform: translate(0, -50%);
+    transition: 0.5s transform;
+}
+li.MuiGridListTile-root .MuiGridListTile-tile:hover img {
+    transform: translate(0, -50%) scale(0.6) rotate(5deg);
+    transition: 0.5s transform;
+}
