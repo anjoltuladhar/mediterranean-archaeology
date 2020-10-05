@@ -119,17 +119,17 @@ export default function GridItem(props){
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
           >
-            <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+            <DialogTitle id="alert-dialog-title">{"Vase Details"}</DialogTitle>
             <DialogContent>
               <DialogContentText id="alert-dialog-description">
-                {"Let Google help apps determine location."}
+                {"attribute and value based view"}
               </DialogContentText>
               <TableContainer component={Paper}>
                     <Table className="mytableContainer" aria-label="simple table">
                         <TableHead>
                         <TableRow>
                             <TableCell>{"Attribute"}</TableCell>
-                            <TableCell align="right">{"Value"}</TableCell>
+                            <TableCell align="left">{"Value"}</TableCell>
                         </TableRow>
                         </TableHead>
                         <TableBody>
