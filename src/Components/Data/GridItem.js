@@ -103,7 +103,7 @@ export default function GridItem(props){
               className={classes.listItem}
               onClick={handleClick(tile)}
             >
-              <img src="./images/P-1-1.png" alt={tile.title} />
+              <img src="./images/P-18-1.png" alt={tile.title} />
               <GridListTileBar
                 title={tile.vase_number + ": " + tile.vase_name}
               />

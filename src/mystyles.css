@@ -3,15 +3,12 @@ li.MuiGridListTile-root .MuiGridListTile-tile {
     overflow: hidden;
 }
 li.MuiGridListTile-root .MuiGridListTile-tile img {
-    position: absolute;
-    left: 0;
-    transform: translate(50%, -50%);
-    padding: 10px;
+    transform: translate(0, -50%);
     transition: 0.5s transform;
     height: 100%;
     width: auto;
 }
 li.MuiGridListTile-root .MuiGridListTile-tile:hover img {
-    transform: translate(50%, -50%) scale(1.06) rotate(5deg);
+    transform: translate(0, -50%) scale(1.06) rotate(5deg);
     transition: 0.5s transform;
 }
