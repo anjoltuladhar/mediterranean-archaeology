@@ -40,6 +40,12 @@ const useStyles = makeStyles({
       cursor: "pointer",
       "&:hover": {
         boxShadow: "0 0 10px rgba(0,0,0,0.3)"
+      },
+      "@media (max-width: 700px)": {
+        width: "45% !important"
+      },
+      "@media (max-width: 500px)": {
+        width: "100% !important"
       }
     },
     avatar: {}
