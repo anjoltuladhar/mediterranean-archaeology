@@ -128,7 +128,7 @@ export default function GridItem(props){
               />
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
-                  {item.description}
+                  {item.description}<br/>
                   <strong>{"Scholar Name: "}</strong> {item.scholor_name}                  
                 </Typography>
               </CardContent>
