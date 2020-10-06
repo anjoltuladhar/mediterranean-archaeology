@@ -1,6 +1,6 @@
 import React from "react";
 import axios from "axios";
-import ReactDOM from "react-dom";
+// import ReactDOM from "react-dom";
 import GridItem from "./GridItem";
 
 export default function FetchData(props) {
@@ -16,7 +16,7 @@ export default function FetchData(props) {
         const image = response.data.image_details;
         sessionStorage.setItem("image", JSON.stringify(image));
         console.log("From API");
-        ReactDOM.render(<GridItem data={data} values={values} handleClick={handleClick} handleClose={handleClose} />,document.getElementById('item-list'));
+        dom = <GridItem data={data} values={values} handleClick={handleClick} handleClose={handleClose} />;
     })
     .catch(function (error) {
       // handle errors

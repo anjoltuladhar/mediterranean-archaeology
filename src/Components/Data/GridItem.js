@@ -1,6 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import "../../mystyles.css"
+import "../../mystyles.css";
+import MySlider from './MySlider';
 import {
   GridList,
   GridListTile,
@@ -10,7 +11,6 @@ import {
   Button,
   Card,
   CardHeader, 
-  CardMedia,
   CardContent,
   Typography
 } from "@material-ui/core";
@@ -97,6 +97,20 @@ function getImage(id){
   return img_name;
 }
 
+function getImages(id){
+  const whole_data = JSON.parse(sessionStorage.getItem("image"));
+  var i;
+  var j = 0;
+  let img_name = [];
+  for(i = 0; i < whole_data.length; i++ ){
+    if(whole_data[i].vase_number === id){
+      img_name[j] = whole_data[i].image_name;
+      j++;
+    }
+  }
+  return img_name;
+}
+
 export default function GridItem(props){
     const classes = useStyles();
     const { data, values, handleClick, handleClose } = props;
@@ -125,6 +139,7 @@ export default function GridItem(props){
         <Dialog
         open={open}
         onClose={handleClose}
+        scroll="paper"
         aria-labelledby="alert-dialog-title"
         aria-describedby="alert-dialog-description"
           >
@@ -133,11 +148,7 @@ export default function GridItem(props){
                 title={item.vase_name}
                 subheader={"Location: " + item.vase_location}
               />
-              <CardMedia
-                className={classes.media}
-                image={"./images/" + getImage(item.vase_number)}
-                title={item.vase_name}
-              />
+              <MySlider images={getImages(item.vase_number)}/>
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
                   {item.description}<br/>
