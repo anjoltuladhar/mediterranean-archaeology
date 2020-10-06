@@ -57,6 +57,7 @@ const useStyles = makeStyles({
     } else {
       let newData = {};
       if (filter === "description") {
+        console.log("desc working")
         newData = data.filter(
           (item) =>
             item.description.toLowerCase().indexOf(searchData.toLowerCase()) !==

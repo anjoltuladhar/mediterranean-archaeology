@@ -44,6 +44,7 @@ export default class Main extends Component {
   render() {
     const { display, searchData, type, filter, item, open, selected_image } = this.state;
     const values = { display, searchData, type, filter, item, open, selected_image };
+
     return (
       <div style={{ background: "#cdcdcd", paddingBottom: 10 }}>
         <Header />

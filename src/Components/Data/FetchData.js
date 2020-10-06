@@ -1,12 +1,21 @@
 import React from "react";
 import axios from "axios";
-// import ReactDOM from "react-dom";
+import ReactDOM from "react-dom";
 import GridItem from "./GridItem";
+// import { CircularProgress } from "@material-ui/core"
+
+function convertData(data){
+  if(Array.isArray(data)){
+    const newData = data.map(d => d)
+    return newData;
+  }
+  return -1;
+}
 
 export default function FetchData(props) {
   const { values, handleClick, handleClose } = props;
   const sessionData = sessionStorage.getItem("data");
-  let dom = []
+  let dom = [];
 
   if(sessionData === null){
     axios.get('https://enigmatic-spire-04219.herokuapp.com/all')
@@ -16,7 +25,8 @@ export default function FetchData(props) {
         const image = response.data.image_details;
         sessionStorage.setItem("image", JSON.stringify(image));
         console.log("From API");
-        dom = <GridItem data={data} values={values} handleClick={handleClick} handleClose={handleClose} />;
+        const sendData = convertData(data);
+        ReactDOM.render(<GridItem data={sendData} values={values} handleClick={handleClick} handleClose={handleClose} />,document.getElementById("item-list"));
     })
     .catch(function (error) {
       // handle errors
@@ -24,8 +34,11 @@ export default function FetchData(props) {
     });
   }
   else{
-    const data = JSON.parse(sessionData);
-    dom = <GridItem data={data} values={values} handleClick={handleClick} handleClose={handleClose} />
+    const sendData = JSON.parse(sessionData);
+    // dom = <GridItem data={sendData} values={values} handleClick={handleClick} handleClose={handleClose} />
+    setTimeout(function(){
+      ReactDOM.render(<GridItem data={sendData} values={values} handleClick={handleClick} handleClose={handleClose} />,document.getElementById("item-list"));
+    }, 2000)
   }
 
   return(
