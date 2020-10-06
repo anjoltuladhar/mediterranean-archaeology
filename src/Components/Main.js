@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import Header from "./Sections/Header";
 import Body from "./Sections/Body";
-import axios from "axios";
-// import Footer from "./Sections/Footer";
 
 export default class Main extends Component {
   state = {
@@ -17,11 +15,6 @@ export default class Main extends Component {
 
   handleClick = i => e => {
     this.setState({item: i, open: true});
-    axios.get("https://enigmatic-spire-04219.herokuapp.com/getimage/" + i.vase_number).then(response => {
-        const img_name = response.data.image_details[0].image_name;
-        console.log(img_name);
-        this.setState({selected_image: img_name});
-    });
   }
 
   handleClose = () => {

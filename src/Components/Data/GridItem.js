@@ -87,11 +87,14 @@ const useStyles = makeStyles({
 function getImage(id){
   const whole_data = JSON.parse(sessionStorage.getItem("image"));
   var i;
+  let img_name = "noimage.png";
   for(i = 0; i < whole_data.length; i++ ){
     if(whole_data[i].vase_number === id){
-      return whole_data[i].image_name;
+      img_name = whole_data[i].image_name;
+      return img_name;
     }
   }
+  return img_name;
 }
 
 export default function GridItem(props){
