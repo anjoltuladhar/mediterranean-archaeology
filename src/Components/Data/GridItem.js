@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import "../../mystyles.css"
-// import axios from "axios";
 import {
   GridList,
   GridListTile,
@@ -81,23 +80,27 @@ const useStyles = makeStyles({
             -1
         );
       }
-  
       return newData;
     }
   }
 
+function getImage(id){
+  const whole_data = JSON.parse(sessionStorage.getItem("image"));
+  var i;
+  for(i = 0; i < whole_data.length; i++ ){
+    if(whole_data[i].vase_number === id){
+      return whole_data[i].image_name;
+    }
+  }
+}
+
 export default function GridItem(props){
     const classes = useStyles();
     const { data, values, handleClick, handleClose } = props;
-    // axios.get("https://enigmaic-spire-04219.herokuapp.com/getimage/9").then(response => {
-    //     console.log(response)
-    // })
 
     const { open, item } = values;
 
-    const searchedData = filter(data, values)
-
-    // console.log(searchedData)
+    const searchedData = filter(data, values);
 
     return (
       <div>
@@ -109,7 +112,7 @@ export default function GridItem(props){
               className={classes.listItem}
               onClick={handleClick(tile)}
             >
-              <img src="./images/P-18-1.png" alt={tile.title} />
+              <img src={"./images/" + getImage(tile.vase_number)} alt={tile.title} />
               <GridListTileBar
                 title={tile.vase_number + ": " + tile.vase_name}
               />
@@ -129,7 +132,7 @@ export default function GridItem(props){
               />
               <CardMedia
                 className={classes.media}
-                image="./images/P-1-1.png"
+                image={"./images/" + getImage(item.vase_number)}
                 title={item.vase_name}
               />
               <CardContent>
