@@ -76,7 +76,6 @@ export default function MySlider(props){
                     element.childNodes[i].classList.add("show");
                     counter.childNodes[0].innerHTML = (i + 1) + "/" + size;
                     i++;
-                    console.log(i);
                 }
                 if(i >= size){
                     i = 0;

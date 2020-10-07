@@ -15,7 +15,7 @@ function convertData(data){
 export default function FetchData(props) {
   const { values, handleClick, handleClose } = props;
   const sessionData = sessionStorage.getItem("data");
-  let dom = [];
+  let dom = <CircularProgress />;
 
   if(sessionData === null){
     axios.get('https://enigmatic-spire-04219.herokuapp.com/all')
@@ -27,7 +27,9 @@ export default function FetchData(props) {
         // console.log("From API");
         const sendData = convertData(data);
         var target = document.getElementById("item-list");
-        target.removeChild(target.childNodes[0]);
+        if(target.hasChildNodes()){
+          target.removeChild(target.childNodes[0]);
+        }
         ReactDOM.render(<GridItem data={sendData} values={values} handleClick={handleClick} handleClose={handleClose} />,target);
     })
     .catch(function (error) {
@@ -37,10 +39,9 @@ export default function FetchData(props) {
   }
   else{
     const sendData = JSON.parse(sessionData);
-    // console.log(sendData)
+    // console.log(sendData)s
     setTimeout(function(){
       var target = document.getElementById("item-list");
-      target.removeChild(target.childNodes[0]);
       ReactDOM.render(<GridItem data={sendData} values={values} handleClick={handleClick} handleClose={handleClose} />,target);
     }, 200)
   }
@@ -48,7 +49,6 @@ export default function FetchData(props) {
   return(
     <div id="item-list" style={{display: "block", width: "100%"}}>
       { dom }
-      <CircularProgress />
     </div>
   )
 }
