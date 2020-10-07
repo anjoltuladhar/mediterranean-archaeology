@@ -146,14 +146,17 @@ export default function GridItem(props){
           >
             <Card className={classes.root}>
               <CardHeader
-                title={item.vase_name}
+                title={item.vase_number + ": " + item.vase_name}
                 subheader={"Location: " + item.vase_location}
               />
               <MySlider images={getImages(item.vase_number)}/>
               <CardContent>
                 <Typography variant="body2" color="textSecondary" component="p">
+                  <strong>{"Scholar Name: "}</strong> {item.scholor_name}<br/>                
                   {item.description}<br/>
-                  <strong>{"Scholar Name: "}</strong> {item.scholor_name}                  
+                  <strong>{"Plate Number: "}</strong> {item.vase_plate}<br/>
+                  <strong>{"Publication: "}</strong> {item.publication}<br/>
+                  <strong>{"Dimension: "}</strong> {item.dimension}<br/>
                 </Typography>
               </CardContent>
           </Card>

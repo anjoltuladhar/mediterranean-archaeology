@@ -35,9 +35,10 @@ export default function FetchData(props) {
   }
   else{
     const sendData = JSON.parse(sessionData);
+    console.log(sendData)
     setTimeout(function(){
       ReactDOM.render(<GridItem data={sendData} values={values} handleClick={handleClick} handleClose={handleClose} />,document.getElementById("item-list"));
-    }, 500)
+    }, 200)
   }
 
   return(
