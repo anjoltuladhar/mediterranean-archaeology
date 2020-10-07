@@ -37,7 +37,7 @@ export default function FetchData(props) {
   }
   else{
     const sendData = JSON.parse(sessionData);
-    console.log(sendData)
+    // console.log(sendData)
     setTimeout(function(){
       var target = document.getElementById("item-list");
       target.removeChild(target.childNodes[0]);
