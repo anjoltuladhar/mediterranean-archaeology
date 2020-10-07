@@ -7,7 +7,7 @@ const useStyles = makeStyles({
     },
     imgcontainer: {
         position: "relative",
-        height: 300,
+        height: 250,
         overflow: "hidden"
     },
     imgArea: {
