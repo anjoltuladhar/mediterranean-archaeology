@@ -150,7 +150,7 @@ export default function GridItem(props){
                 subheader={"Location: " + item.vase_location}
               />
               <MySlider images={getImages(item.vase_number)}/>
-              <CardContent style={{ maxWidth: 40, overflowY: scroll }}>
+              <CardContent style={{ maxWidth: 40, overflowY: "scroll" }}>
                 <Typography variant="body2" color="textSecondary" component="p">
                   <strong>{"Scholar Name: "}</strong> {item.scholor_name}<br/>                
                   {item.description}<br/>
