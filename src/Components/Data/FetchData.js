@@ -24,7 +24,7 @@ export default function FetchData(props) {
         sessionStorage.setItem("data", JSON.stringify(data));
         const image = response.data.image_details;
         sessionStorage.setItem("image", JSON.stringify(image));
-        console.log("From API");
+        // console.log("From API");
         const sendData = convertData(data);
         ReactDOM.render(<GridItem data={sendData} values={values} handleClick={handleClick} handleClose={handleClose} />,document.getElementById("item-list"));
     })

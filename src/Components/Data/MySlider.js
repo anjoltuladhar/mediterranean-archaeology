@@ -59,6 +59,7 @@ export default function MySlider(props){
     var interval = setInterval(function(){
         var element = document.getElementById('image-slider');
         if(element === null){
+            console.log("cleared");
             clearInterval(interval);
         }
         else{
@@ -75,12 +76,18 @@ export default function MySlider(props){
                     element.childNodes[i].classList.add("show");
                     counter.childNodes[0].innerHTML = (i + 1) + "/" + size;
                     i++;
+                    console.log(i);
                 }
                 if(i >= size){
                     i = 0;
                 }
             }
             else{
+                var node = document.createElement("img");
+                node.setAttribute('src','./images/noimage.png');
+                node.setAttribute('alt','no image');
+                node.setAttribute('style', "height: 100%; margin: 0 auto; display: block;");
+                element.appendChild(node);
                 clearInterval(interval);
             }
         }
@@ -108,7 +115,7 @@ export default function MySlider(props){
                 })}
             </div>
             <div className={classes.counter} id="madd-counter">
-                <span>{"1/" + image_structure.length}</span>
+                <span>{((image_structure.length > 0)?"1":"0") + "/" + image_structure.length}</span>
             </div>
         </div>
     );
