@@ -2,7 +2,7 @@ import React from "react";
 import axios from "axios";
 import ReactDOM from "react-dom";
 import GridItem from "./GridItem";
-// import { CircularProgress } from "@material-ui/core"
+import { CircularProgress } from "@material-ui/core";
 
 function convertData(data){
   if(Array.isArray(data)){
@@ -26,7 +26,9 @@ export default function FetchData(props) {
         sessionStorage.setItem("image", JSON.stringify(image));
         // console.log("From API");
         const sendData = convertData(data);
-        ReactDOM.render(<GridItem data={sendData} values={values} handleClick={handleClick} handleClose={handleClose} />,document.getElementById("item-list"));
+        var target = document.getElementById("item-list");
+        target.removeChild(target.childNodes[0]);
+        ReactDOM.render(<GridItem data={sendData} values={values} handleClick={handleClick} handleClose={handleClose} />,target);
     })
     .catch(function (error) {
       // handle errors
@@ -37,13 +39,16 @@ export default function FetchData(props) {
     const sendData = JSON.parse(sessionData);
     console.log(sendData)
     setTimeout(function(){
-      ReactDOM.render(<GridItem data={sendData} values={values} handleClick={handleClick} handleClose={handleClose} />,document.getElementById("item-list"));
+      var target = document.getElementById("item-list");
+      target.removeChild(target.childNodes[0]);
+      ReactDOM.render(<GridItem data={sendData} values={values} handleClick={handleClick} handleClose={handleClose} />,target);
     }, 200)
   }
 
   return(
     <div id="item-list" style={{display: "block", width: "100%"}}>
       { dom }
+      <CircularProgress />
     </div>
   )
 }
