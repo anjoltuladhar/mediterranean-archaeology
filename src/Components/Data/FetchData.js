@@ -26,10 +26,9 @@ function limitData(data, page){
 export default function FetchData(props) {
   const { values, handleClick, handleClose, loadMore } = props;
   const sessionData = sessionStorage.getItem("data");
-  let dom;
+  let dom = <CircularProgress />;;
 
   if(sessionData === null){
-    dom = <CircularProgress />;
     axios.get('https://enigmatic-spire-04219.herokuapp.com/all')
     .then(function (response) {
         const data = response.data.vase_shape;
@@ -39,26 +38,21 @@ export default function FetchData(props) {
         // console.log("From API");
         const interData = convertData(data);
         const retrievedData = limitData(interData, values.page);
-        console.log(retrievedData)
-        var target = document.getElementById("item-list");
-        if(target.hasChildNodes()){
-          target.removeChild(target.childNodes[0]);
-        }
+        // console.log(retrievedData)
 
-        var location = document.getElementById("listContainer");
+        var loadButton = document.getElementById("load-button");
+        var loadIcon = document.getElementById("load-icon");
+
         if(interData.length > (values.page * 10)){
-          if(location.childNodes.length < 2){
             var myloadbtn = document.createElement("button");
             myloadbtn.setAttribute("class","loadMoreButton");
             myloadbtn.addEventListener("click", loadMore);
             myloadbtn.innerHTML = "Load More";
-            location.appendChild(myloadbtn);
-          }
-        }
-        else{
-          location.removeChild(location.childNodes[1]);
+            loadButton.appendChild(myloadbtn);
         }
 
+        var target = document.getElementById("item-list");
+        loadIcon.removeChild(loadIcon.childNodes[0]);
         ReactDOM.render(<GridItem data={retrievedData} values={values} handleClick={handleClick} handleClose={handleClose} />,target);
     })
     .catch(function (error) {
@@ -72,31 +66,38 @@ export default function FetchData(props) {
     
     // console.log(retrievedData)
     setTimeout(function(){
+      var loadIcon = document.getElementById("load-icon");
+      var loadButton = document.getElementById("load-button");
 
-      var location = document.getElementById("listContainer");
-        if(interData.length > (values.page * 10)){
-          if(location.childNodes.length < 2){
-            var myloadbtn = document.createElement("button");
-            myloadbtn.setAttribute("class","loadMoreButton");
-            myloadbtn.addEventListener("click", loadMore);
-            myloadbtn.innerHTML = "Load More";
-            location.appendChild(myloadbtn);
-          }
+      if(interData.length > (values.page * 10)){
+        if(loadButton.childNodes.length < 1){
+          var myloadbtn = document.createElement("button");
+          myloadbtn.setAttribute("class","loadMoreButton");
+          myloadbtn.addEventListener("click", loadMore);
+          myloadbtn.innerHTML = "Load More";
+          loadButton.appendChild(myloadbtn);    
         }
-        else{
-          location.removeChild(location.childNodes[1]);
-        }
+      }
+
+      //Removing loading circular icon
+      if(loadIcon.childNodes.length > 0){
+        loadIcon.removeChild(loadIcon.childNodes[0]);
+      }
 
       var target = document.getElementById("item-list");
       ReactDOM.render(<GridItem data={retrievedData} values={values} handleClick={handleClick} handleClose={handleClose} />,target);
+
+      
+
     }, 200);
   }
 
   return(
     <div id="listContainer">
+      <div id="load-icon">{ dom }</div>
       <div id="item-list" style={{display: "block", width: "100%"}}>
-        { dom }
       </div>
+      <div id="load-button"></div>
     </div>
   )
 }
