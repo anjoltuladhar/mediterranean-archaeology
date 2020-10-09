@@ -59,7 +59,6 @@ export default function MySlider(props){
     var interval = setInterval(function(){
         var element = document.getElementById('image-slider');
         if(element === null){
-            console.log("cleared");
             clearInterval(interval);
         }
         else{
@@ -82,6 +81,7 @@ export default function MySlider(props){
                 }
             }
             else{
+                // incase there is no vase images
                 var node = document.createElement("img");
                 node.setAttribute('src','./images/noimage.png');
                 node.setAttribute('alt','no image');

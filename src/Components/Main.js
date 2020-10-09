@@ -10,7 +10,8 @@ export default class Main extends Component {
     filter: "description",
     item: [],
     selected_image: '',
-    open: false
+    open: false,
+    page: 1
   };
 
   handleClick = i => e => {
@@ -41,9 +42,13 @@ export default class Main extends Component {
     }
   };
 
+  loadMore = () => {
+    this.setState({page: this.state.page + 1});
+  }
+
   render() {
-    const { display, searchData, type, filter, item, open, selected_image } = this.state;
-    const values = { display, searchData, type, filter, item, open, selected_image };
+    const { display, searchData, type, filter, item, open, selected_image, page } = this.state;
+    const values = { display, searchData, type, filter, item, open, selected_image, page };
 
     return (
       <div style={{ background: "#cdcdcd", paddingBottom: 10 }}>
@@ -55,6 +60,7 @@ export default class Main extends Component {
           handleClick={this.handleClick}
           handleClose={this.handleClose}
           loadImage={this.loadImage}
+          loadMore={this.loadMore}
         />
         {/* <Footer /> */}
       </div>

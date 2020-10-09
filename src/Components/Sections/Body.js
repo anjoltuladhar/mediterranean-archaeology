@@ -53,7 +53,7 @@ function filterOptions(values, handleClickFilter) {
 
 export default function Body(props) {
   const classes = useStyles()
-  const { handleChange, handleClickFilter, values, handleClick, handleClose, loadImage } = props;
+  const { handleChange, handleClickFilter, values, handleClick, handleClose, loadImage, loadMore } = props;
   return (
     <Container maxWidth="md">
       <Paper className={classes.topBar}>
@@ -76,7 +76,7 @@ export default function Body(props) {
       </Paper>
 
       <Paper className={classes.root} id="content-section" sm={12}>
-        <FetchData values={values} handleClick={handleClick} handleClose={handleClose} loadImage={loadImage} />
+        <FetchData values={values} handleClick={handleClick} handleClose={handleClose} loadImage={loadImage} loadMore={loadMore} />
       </Paper>
     </Container>
   );
